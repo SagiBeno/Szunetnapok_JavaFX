@@ -72,7 +72,7 @@ public class SzunetnapokController implements Initializable {
         spinner_year.setEditable(true);
     }
 
-    private String weekdayToText(int day) {
+    public String weekdayToText(int day) {
         return switch (day) {
             case 1 -> "Hétfő";
             case 2 -> "Kedd";
@@ -85,7 +85,7 @@ public class SzunetnapokController implements Initializable {
         };
     }
 
-    private String typeToText(int type) {
+    public String typeToText(int type) {
         return switch (type) {
             case 1 -> "Munkaszüneti nap";
             case 2 -> "Munkanap";

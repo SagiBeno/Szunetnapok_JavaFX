@@ -62,6 +62,8 @@ public class SzunetNapokApiClient {
     }
 
     public static YearHolidays getYear() throws IOException, InterruptedException {
-        return SzunetNapokApiClient.getYear(new Date().getYear());
+        LocalDate localDate = LocalDate.now();
+        int year = localDate.getYear();
+        return SzunetNapokApiClient.getYear(year);
     }
 }

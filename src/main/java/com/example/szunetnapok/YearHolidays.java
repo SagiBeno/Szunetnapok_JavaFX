@@ -25,7 +25,7 @@ public class YearHolidays {
 
     public YearHolidays(int year, List<HolidayDay> days) {
         this.setYear(year);
-        this.setDays(new ArrayList<>());
+        this.setDays(days);
     }
 
 }
