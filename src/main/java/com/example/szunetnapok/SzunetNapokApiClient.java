@@ -42,7 +42,12 @@ public class SzunetNapokApiClient {
         System.out.println(res.body());
 
         String json = res.body();
+        JSONObject jsonObject = new JSONObject(json);
+        JSONArray daysArr = jsonObject.getJSONArray("days");
+        for (Object day : daysArr) {
+            JSONObject dayObject = new JSONObject(day);
 
+        }
 
         return null; // TODO
     }
