@@ -11,9 +11,9 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Scanner;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
+import javax.xml.parsers.*;
+
+import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -43,10 +43,11 @@ public class SzunetNapokApiClient {
         System.out.println(res.body());
 
         // Parse XML
-        SAXParserFactory xmlParserFactory = SAXParserFactory.newInstance();
-        SAXParser xmlParser = xmlParserFactory.newSAXParser();
+        DocumentBuilderFactory xmlParserFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder xmlParser = xmlParserFactory.newDocumentBuilder();
         DefaultHandler parserHandler = new DefaultHandler();
-        xmlParser.parse(res.body(), parserHandler);
+        //xmlParser.parse(res.body(), parserHandler);
+        Document xml = xmlParser.parse(res.body());
 
         return null; // TODO
     }
