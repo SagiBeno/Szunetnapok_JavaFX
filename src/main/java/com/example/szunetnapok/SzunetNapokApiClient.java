@@ -11,9 +11,12 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Scanner;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
 
 public class SzunetNapokApiClient {
     public static String baseUrlStr = "https://szunetnapok.hu/api/";
@@ -23,7 +26,7 @@ public class SzunetNapokApiClient {
         return fs.nextLine();
     }
 
-    public static YearHolidays getYear(int year) throws IOException, InterruptedException {
+    public static YearHolidays getYear(int year) throws IOException, InterruptedException, ParserConfigurationException, SAXException {
         String apiKey = getApiKey();
 
         String method = "GET";
@@ -39,10 +42,16 @@ public class SzunetNapokApiClient {
         System.out.println(res.statusCode());
         System.out.println(res.body());
 
+        // Parse XML
+        SAXParserFactory xmlParserFactory = SAXParserFactory.newInstance();
+        SAXParser xmlParser = xmlParserFactory.newSAXParser();
+        DefaultHandler parserHandler = new DefaultHandler();
+        xmlParser.parse(res.body(), parserHandler);
+
         return null; // TODO
     }
 
-    public static YearHolidays getYear() throws IOException, InterruptedException {
+    public static YearHolidays getYear() throws IOException, InterruptedException, ParserConfigurationException, SAXException {
         return SzunetNapokApiClient.getYear(new Date().getYear());
     }
 }
