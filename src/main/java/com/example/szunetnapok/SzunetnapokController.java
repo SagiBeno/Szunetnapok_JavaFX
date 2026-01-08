@@ -7,7 +7,7 @@ import javafx.scene.control.SpinnerValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 
@@ -17,12 +17,17 @@ public class SzunetnapokController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        SpinnerValueFactory.IntegerSpinnerValueFactory integerSpinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(2025, 2030);
+        LocalDate localDate = LocalDate.now();
+        int minYear = localDate.getYear();
+        int maxYear = minYear + 10;
+
+        SpinnerValueFactory.IntegerSpinnerValueFactory integerSpinnerValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(minYear, maxYear);
         spinner_year.setValueFactory(integerSpinnerValueFactory);
-        spinner_year.getValueFactory().setValue(2026);
+        spinner_year.getValueFactory().setValue(minYear);
     }
 
     @FXML protected void onShowButtonClick() throws IOException, InterruptedException {
-        YearHolidays yearHolidays = SzunetNapokApiClient.getYear(spinner_year.getValueFactory().getValue());
+        Integer year = spinner_year.getValueFactory().getValue();
+        YearHolidays yearHolidays = SzunetNapokApiClient.getYear(year);
     }
 }

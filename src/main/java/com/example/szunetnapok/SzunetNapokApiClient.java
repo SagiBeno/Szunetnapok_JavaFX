@@ -27,7 +27,7 @@ public class SzunetNapokApiClient {
                 .GET()
                 .build();
 
-        HttpResponse<String> res = http.send(req, null);
+        HttpResponse<String> res = http.send(req, HttpResponse.BodyHandlers.ofString());
         System.out.println(res.statusCode());
         System.out.println(res.body());
 
