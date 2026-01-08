@@ -3,7 +3,7 @@ package com.example.szunetnapok;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class SzunetnapokController {
     @FXML
     private Label welcomeText;
 
