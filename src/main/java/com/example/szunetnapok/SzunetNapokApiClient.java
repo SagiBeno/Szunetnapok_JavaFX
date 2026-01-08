@@ -47,16 +47,19 @@ public class SzunetNapokApiClient {
 
         String json = res.body();
         JSONObject jsonObject = new JSONObject(json);
-        JSONArray daysArr = jsonObject.getJSONArray("days");
 
-        for (int i = 0; i < daysArr.length(); i++) {
-            JSONObject dayObject = daysArr.getJSONObject(i);
-            LocalDate date = LocalDate.parse(dayObject.get("date").toString());
-            String name = dayObject.getString("name");
-            int type = Integer.parseInt(dayObject.getString("type"));
-            int weekday = Integer.parseInt(dayObject.getString("weekday"));
-            HolidayDay holidayDay = new HolidayDay(date, name, type, weekday);
-            result.days.add(holidayDay);
+        if (!jsonObject.has("message")) {
+            JSONArray daysArr = jsonObject.getJSONArray("days");
+
+            for (int i = 0; i < daysArr.length(); i++) {
+                JSONObject dayObject = daysArr.getJSONObject(i);
+                LocalDate date = LocalDate.parse(dayObject.get("date").toString());
+                String name = dayObject.getString("name");
+                int type = Integer.parseInt(dayObject.getString("type"));
+                int weekday = Integer.parseInt(dayObject.getString("weekday"));
+                HolidayDay holidayDay = new HolidayDay(date, name, type, weekday);
+                result.days.add(holidayDay);
+            }
         }
 
         return result;
