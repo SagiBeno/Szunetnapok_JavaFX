@@ -1,5 +1,7 @@
 package com.example.szunetnapok;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Date;
 
@@ -8,6 +10,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Scanner;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.InputSource;
@@ -15,8 +18,13 @@ import org.xml.sax.InputSource;
 public class SzunetNapokApiClient {
     public static String baseUrlStr = "https://szunetnapok.hu/api/";
 
+    public static String getApiKey() throws FileNotFoundException {
+        Scanner fs = new Scanner(new FileReader("szunetnapok-api.key"));
+        return fs.nextLine();
+    }
+
     public static YearHolidays getYear(int year) throws IOException, InterruptedException {
-        String apiKey = ""; // TODO
+        String apiKey = getApiKey();
 
         String method = "GET";
         String endpoint = baseUrlStr + apiKey + "/" + year + "/json/";
