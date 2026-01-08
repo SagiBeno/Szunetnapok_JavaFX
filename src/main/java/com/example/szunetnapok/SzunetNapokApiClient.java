@@ -7,15 +7,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
-import java.io.InputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Scanner;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-import org.xml.sax.InputSource;
 
 import org.json.*;
 
