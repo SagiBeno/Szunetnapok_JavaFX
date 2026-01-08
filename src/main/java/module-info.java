@@ -3,6 +3,7 @@ module com.example.szunetnapok {
     requires javafx.fxml;
     requires java.net.http;
     requires java.xml;
+    requires org.json;
 
 
     opens com.example.szunetnapok to javafx.fxml;

@@ -15,6 +15,8 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.InputSource;
 
+import org.json.*;
+
 public class SzunetNapokApiClient {
     public static String baseUrlStr = "https://szunetnapok.hu/api/";
 
