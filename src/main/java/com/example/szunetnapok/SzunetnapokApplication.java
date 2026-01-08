@@ -8,16 +8,17 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class SzunetnapokApplication extends Application {
+
+    public static boolean isRunningTest = false;
+
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(SzunetnapokApplication.class.getResource("szunetnapok-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        stage.setTitle("Munkaszüneti napok");
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public static void main(String[] args) {
-        launch();
+        FXMLLoader fxmlLoader = null;
+        if (!isRunningTest) fxmlLoader = new FXMLLoader(SzunetnapokApplication.class.getResource("szunetnapok-view.fxml"));
+        Scene scene = null;
+        if (!isRunningTest) scene = new Scene(fxmlLoader.load(), 800, 600);
+        if (!isRunningTest) stage.setTitle("Munkaszüneti napok");
+        if (!isRunningTest) stage.setScene(scene);
+        if (!isRunningTest) stage.show();
     }
 }
