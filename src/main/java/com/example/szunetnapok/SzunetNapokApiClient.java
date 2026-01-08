@@ -29,7 +29,7 @@ public class SzunetNapokApiClient {
         String apiKey = getApiKey();
 
         String method = "GET";
-        String endpoint = baseUrlStr + apiKey + "/" + year + "/xml/";
+        String endpoint = baseUrlStr + apiKey + "/" + year + "/json/";
 
         HttpClient http = HttpClient.newBuilder().build();
         HttpRequest req = HttpRequest.newBuilder()
