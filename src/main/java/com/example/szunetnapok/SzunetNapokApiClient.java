@@ -1,5 +1,6 @@
 package com.example.szunetnapok;
 
+import java.io.IOException;
 import java.util.Date;
 
 import java.io.InputStream;
@@ -12,13 +13,28 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.InputSource;
 
 public class SzunetNapokApiClient {
-    public static String baseUrlStr;
+    public static String baseUrlStr = "https://szunetnapok.hu/api/";
 
-    public static YearHolidays getYear(int year) {
+    public static YearHolidays getYear(int year) throws IOException, InterruptedException {
+        String apiKey = ""; // TODO
+
+        String method = "GET";
+        String endpoint = baseUrlStr + apiKey + "/" + year + "/json/";
+
+        HttpClient http = HttpClient.newBuilder().build();
+        HttpRequest req = HttpRequest.newBuilder()
+                .uri(URI.create(endpoint))
+                .GET()
+                .build();
+
+        HttpResponse<String> res = http.send(req, null);
+        System.out.println(res.statusCode());
+        System.out.println(res.body());
+
         return null; // TODO
     }
 
-    public static YearHolidays getYear() {
+    public static YearHolidays getYear() throws IOException, InterruptedException {
         return SzunetNapokApiClient.getYear(new Date().getYear());
     }
 }
