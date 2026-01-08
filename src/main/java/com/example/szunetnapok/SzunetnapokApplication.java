@@ -12,7 +12,7 @@ public class SzunetnapokApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SzunetnapokApplication.class.getResource("szunetnapok-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        stage.setTitle("Szünetnapok");
+        stage.setTitle("Munkaszüneti napok");
         stage.setScene(scene);
         stage.show();
     }
