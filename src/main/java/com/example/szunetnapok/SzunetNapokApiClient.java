@@ -39,6 +39,9 @@ public class SzunetNapokApiClient {
         System.out.println(res.statusCode());
         System.out.println(res.body());
 
+        String json = res.body();
+
+
         return null; // TODO
     }
 
