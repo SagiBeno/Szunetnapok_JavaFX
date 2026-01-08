@@ -3,14 +3,33 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" minHeight="600.0" minWidth="800.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.szunetnapok.SzunetnapokController">
+<VBox alignment="TOP_CENTER" minHeight="600.0" minWidth="800.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.szunetnapok.SzunetnapokController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
-    <Label fx:id="welcomeText" text="Munkaszüneti napok" />
-   <Label text="Év:" />
-   <Spinner id="spinner_year" fx:id="spinner_year" editable="true" />
-    <Button text="Keresés" onAction="#onShowButtonClick" />
+    <Label fx:id="welcomeText" alignment="CENTER" contentDisplay="TOP" prefHeight="40.0" prefWidth="300.0" text="Munkaszüneti napok" textAlignment="CENTER">
+      <font>
+         <Font name="Droid Sans Bold" size="26.0" />
+      </font></Label>
+   <HBox alignment="CENTER" prefHeight="45.0" prefWidth="760.0">
+      <children>
+         <Label contentDisplay="CENTER" text="Év:">
+            <font>
+               <Font name="Calibri" size="16.0" />
+            </font>
+            <HBox.margin>
+               <Insets right="10.0" />
+            </HBox.margin>
+         </Label>
+         <Spinner id="spinner_year" fx:id="spinner_year" editable="true">
+            <HBox.margin>
+               <Insets right="10.0" />
+            </HBox.margin>
+         </Spinner>
+          <Button onAction="#onShowButtonClick" text="Keresés" />
+      </children>
+   </HBox>
 </VBox>

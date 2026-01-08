@@ -3,6 +3,8 @@ package com.example.szunetnapok;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 
 import java.io.InputStream;
@@ -26,6 +28,8 @@ public class SzunetNapokApiClient {
     }
 
     public static YearHolidays getYear(int year) throws IOException, InterruptedException {
+        YearHolidays result = new YearHolidays(year, new ArrayList<>());
+
         String apiKey = getApiKey();
 
         String method = "GET";
@@ -44,12 +48,18 @@ public class SzunetNapokApiClient {
         String json = res.body();
         JSONObject jsonObject = new JSONObject(json);
         JSONArray daysArr = jsonObject.getJSONArray("days");
-        for (Object day : daysArr) {
-            JSONObject dayObject = new JSONObject(day);
 
+        for (int i = 0; i < daysArr.length(); i++) {
+            JSONObject dayObject = daysArr.getJSONObject(i);
+            LocalDate date = LocalDate.parse(dayObject.get("date").toString());
+            String name = dayObject.getString("name");
+            int type = Integer.parseInt(dayObject.getString("type"));
+            int weekday = Integer.parseInt(dayObject.getString("weekday"));
+            HolidayDay holidayDay = new HolidayDay(date, name, type, weekday);
+            result.days.add(holidayDay);
         }
 
-        return null; // TODO
+        return result;
     }
 
     public static YearHolidays getYear() throws IOException, InterruptedException {
